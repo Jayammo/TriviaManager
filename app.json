@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "TriviaManager",
+    "slug": "TriviaManager",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "TriviaManager"
+}
