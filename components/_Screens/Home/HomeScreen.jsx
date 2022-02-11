@@ -4,8 +4,8 @@ const HomeScreen = (props) => {
 	const { navigation } = props;
 	return (
 		<Button
-			title='Go to Profile page'
-			onPress={() => navigation.navigate('Profile', { name: 'Groot' })}
+			title='Go to Question page'
+			onPress={() => navigation.navigate('Question')}
 		/>
 	);
 };
