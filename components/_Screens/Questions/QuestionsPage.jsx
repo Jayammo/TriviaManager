@@ -1,24 +1,33 @@
 import * as React from 'react';
-import { Card, Title, Paragraph, Divider } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+import TriviaQuestions from './TriviaQuestions';
+import { FAB } from 'react-native-paper';
 
-const triviaQuestions = [
+const questions = [
 	{ question: 'How old are you?', answer: '30', OrderNumber: 1 },
 	{ question: 'What time is it?', answer: '2pm', OrderNumber: 2 },
 ];
+
 const QuestionsPage = () => {
-	return triviaQuestions.map((x) => (
+	return (
 		<>
-			<Card>
-				<Card.Content>
-					<Title>
-						Question {x.OrderNumber}: {x.question}
-					</Title>
-					<Paragraph>Answer: {x.answer}</Paragraph>
-				</Card.Content>
-			</Card>
-			<Divider />
+			<TriviaQuestions questions={questions} />
+			<FAB
+				style={styles.fab}
+				small
+				icon='plus'
+				onPress={() => console.log('Pressed')}
+			/>
 		</>
-	));
+	);
 };
 
+const styles = StyleSheet.create({
+	fab: {
+		position: 'absolute',
+		margin: 16,
+		right: 0,
+		bottom: 0,
+	},
+});
 export default QuestionsPage;
