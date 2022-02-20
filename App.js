@@ -1,36 +1,29 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import ListView from './components/ListView/ListView';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './components/_Screens/Home/HomeScreen';
-import ProfileScreen from './components/_Screens/Profile/ProfileScreen';
 import AboutScreen from './components/_Screens/About/AboutScreen';
+import HomeStackScreen from './components/_Screens/Home/HomeStackScreen';
+import ProfileScreen from './components/_Screens/Profile/ProfileScreen';
+import QuestionsPage from './components/_Screens/Questions/QuestionsPage';
+import AppProvider from './components/_Shared/AppProvider';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
 	return (
-		<NavigationContainer>
-			<Stack.Navigator>
-				<Stack.Screen
-					name='Home'
-					component={HomeScreen}
-					options={{ title: 'Welcome' }}
-				/>
-				<Stack.Screen name='Profile' component={ProfileScreen} />
-				<Stack.Screen name='About' component={AboutScreen} />
-			</Stack.Navigator>
-		</NavigationContainer>
+		<AppProvider>
+			<NavigationContainer>
+				<Tab.Navigator>
+					<Tab.Screen
+						name='Root'
+						component={HomeStackScreen}
+						options={{ headerShown: false }}
+					/>
+					<Tab.Screen name='Profile' component={ProfileScreen} />
+					<Tab.Screen name='About' component={AboutScreen} />
+					<Tab.Screen name='Question' component={QuestionsPage} />
+				</Tab.Navigator>
+			</NavigationContainer>
+		</AppProvider>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
