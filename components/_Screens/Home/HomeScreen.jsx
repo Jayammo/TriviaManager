@@ -1,26 +1,35 @@
-import { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { useEffect, useState, useContext, useCallback } from 'react';
+import {
+	RefreshControl,
+	SafeAreaView,
+	ScrollView,
+	StyleSheet,
+} from 'react-native';
 import { FAB } from 'react-native-paper';
 import { FetchAllTrivia } from '../../../DataStore/StoreFunctions/TriviaStore';
+import { AppContext } from '../../_Shared/AppProvider';
+import Loader from '../../_Shared/Loader/Loader';
 import TriviaCard from '../Trivia/TriviaCard';
 
 const HomeScreen = ({ navigation }) => {
-	const [trivias, setTrivias] = useState([]);
+	const [trivias, setTrivias] = useState([{}]);
+	const { refreshing } = useContext(AppContext);
 
 	useEffect(() => {
 		const fetch = async () => {
 			const storedTrivias = await FetchAllTrivia();
-			console.log('Store => ', storedTrivias);
 			setTrivias(storedTrivias);
 		};
 		fetch();
-	}, []);
+	}, [refreshing]);
 
 	return (
 		<>
-			{trivias.map((trivia) => (
-				<TriviaCard />
-			))}
+			<Loader>
+				{trivias.map((trivia, id) => (
+					<TriviaCard key={id} trivia={trivia} />
+				))}
+			</Loader>
 			<FAB
 				style={styles.fab}
 				small

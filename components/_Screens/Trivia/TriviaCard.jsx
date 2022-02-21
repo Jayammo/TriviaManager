@@ -5,11 +5,11 @@ const LeftContent = (props) => (
 	<Avatar.Icon {...props} icon='book-open-page-variant' />
 );
 
-const TriviaCard = (props) => {
+const TriviaCard = ({ trivia }) => {
 	return (
 		<Card style={styles.card} mode='elevated' elevation={5}>
 			<Card.Title
-				title='Trivia Title'
+				title={trivia.EventTitle}
 				subtitle={new Intl.DateTimeFormat('en-US', {
 					year: 'numeric',
 					month: 'numeric',
@@ -20,7 +20,7 @@ const TriviaCard = (props) => {
 				left={LeftContent}
 			/>
 			<Card.Content>
-				<Paragraph>Card content</Paragraph>
+				<Paragraph>{trivia.Description}</Paragraph>
 			</Card.Content>
 		</Card>
 	);

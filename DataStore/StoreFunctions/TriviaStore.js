@@ -3,7 +3,9 @@ import { StoreKey } from '../StoreKeys';
 
 export async function CreateTrivia(trivia) {
 	try {
-		let triviaJSON = JSON.stringify(trivia);
+		const triviaList = await FetchAllTrivia();
+		let values = [...triviaList, trivia];
+		let triviaJSON = JSON.stringify(values);
 		await AsyncStorage.setItem(StoreKey.Trivia, triviaJSON);
 	} catch (error) {
 		console.error({ error });

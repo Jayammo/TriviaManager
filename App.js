@@ -17,7 +17,7 @@ export default function App() {
 					<Tab.Screen
 						name='Root'
 						component={HomeStackScreen}
-						options={{ headerShown: false }}
+						options={{ headerShown: false, title: 'Trivia' }}
 					/>
 					<Tab.Screen name='Profile' component={ProfileScreen} />
 					<Tab.Screen name='About' component={AboutScreen} />

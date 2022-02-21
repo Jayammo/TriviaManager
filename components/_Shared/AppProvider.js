@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 
-const AppContext = React.createContext();
+export const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [refreshing, setRefreshing] = useState(false);
 	return (
-		<AppContext.Provider value={{ loading, setLoading }}>
+		<AppContext.Provider
+			value={{ loading, setLoading, refreshing, setRefreshing }}
+		>
 			{children}
 		</AppContext.Provider>
 	);
